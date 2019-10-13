@@ -18,8 +18,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class AccesoFicheros extends Application {
@@ -41,7 +41,7 @@ public class AccesoFicheros extends Application {
 		rutaLbl = new Label("Ruta actual");
 		
 		rutaTxt = new TextField();
-		
+
 		nombreFichTxt = new TextField();
 		nombreFichTxt.setPromptText("Carpeta o fichero a crear, eliminar o destino a mover");
 		
@@ -66,42 +66,45 @@ public class AccesoFicheros extends Application {
 		grid.setHgap(10);
 		grid.setVgap(10);
 		grid.setPadding(new Insets(5,30,5,5));
-		
+
 		// Filas y columnas
-		grid.addRow(0, rutaLbl, rutaTxt);
-			
-		HBox myBox = new HBox(50, createBt, removeBt, moveBt, folderBt, fichBt);
-		myBox.setAlignment(Pos.BASELINE_CENTER);
+		grid.addRow(0, rutaLbl, rutaTxt); // Ruta
 		
-		grid.addRow(1, myBox);
-		GridPane.setColumnSpan(myBox, 2);
+		// Los botones en un Horizontal Box
+		HBox btBox = new HBox(80, createBt, removeBt, moveBt, folderBt, fichBt); // Botones principales de manejo de ficheros
+		btBox.setAlignment(Pos.BASELINE_CENTER);
 		
-		grid.addRow(2, nombreFichTxt);
+		grid.addRow(1, btBox);
+		GridPane.setColumnSpan(btBox, 2);
+		
+		grid.addRow(2, nombreFichTxt); // El nombre Del fichero
 		GridPane.setColumnSpan(nombreFichTxt, 2);
 		
-		grid.addRow(3, viewBt);
+		grid.addRow(3, viewBt); // Ver contenido
 		
-		grid.addRow(4, fileList);
+		grid.addRow(4, fileList); // Lista de ficheros
 		fileList.setPrefHeight(100);
 		GridPane.setColumnSpan(fileList, 2);
 
-		grid.add(contentBt, 0, 5);
-		grid.add(modBt, 0, 6);
+		VBox contentBtBox = new VBox(10, contentBt, modBt); // Botones de modificación y ver fichero
+		grid.add(contentBtBox, 0, 5);
 		
-		grid.add(contentArea, 1, 5);	
+		grid.add(contentArea, 1, 5);	// Contenido del fichero
 		
-		GridPane.setHgrow(rutaTxt, Priority.ALWAYS);
-		GridPane.setHgrow(fileList, Priority.ALWAYS);
-		GridPane.setHgrow(nombreFichTxt, Priority.ALWAYS);
-		GridPane.setHgrow(contentArea, Priority.ALWAYS);
+		// Ajustamos las filas y las columnas a nuestras necesidades
+		ColumnConstraints[] cols = {
+			
+			new ColumnConstraints(),
+			new ColumnConstraints()
+		};
+		
+		cols[1].setHgrow(Priority.ALWAYS);
+		cols[1].setFillWidth(true);
+		grid.getColumnConstraints().addAll(cols);
+				
 		GridPane.setVgrow(fileList, Priority.ALWAYS);
 		GridPane.setVgrow(contentArea, Priority.ALWAYS);
 		
-		GridPane.setFillWidth(rutaTxt, true);
-		GridPane.setFillWidth(fileList, true);
-		GridPane.setFillWidth(nombreFichTxt, true);
-		GridPane.setFillWidth(contentArea, true);
-
 		// Ajuste de Border y Tab layouts
 		BorderPane border = new BorderPane();
 		border.setTop(nombreLbl);
