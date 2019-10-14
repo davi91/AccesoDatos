@@ -3,6 +3,7 @@ package dad.javafx.main;
 import java.io.File;
 
 import javafx.application.Application;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -38,7 +39,7 @@ public class AccesoFicheros extends Application {
 		nombreLbl = new Label("David Fernández Nieves");
 		nombreLbl.setPrefHeight(40);
 		
-		rutaLbl = new Label("Ruta actual");
+		rutaLbl = new Label("Ruta actual:");
 		
 		rutaTxt = new TextField();
 
@@ -69,6 +70,7 @@ public class AccesoFicheros extends Application {
 
 		// Filas y columnas
 		grid.addRow(0, rutaLbl, rutaTxt); // Ruta
+		GridPane.setHalignment(rutaLbl, HPos.CENTER);
 		
 		// Los botones en un Horizontal Box
 		HBox btBox = new HBox(80, createBt, removeBt, moveBt, folderBt, fichBt); // Botones principales de manejo de ficheros

@@ -3,9 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>dad.javafx</groupId>
-	<artifactId>JavaFXTemplate</artifactId>
+	<artifactId>AccesoDatos</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>AccesoADatos</name>
+	<name>AccesoDatos</name>
 	<description>Programa que nos permite subir ficheros, visualizarlos y editar su contenido.</description>
 
 	<properties>
