@@ -2,19 +2,21 @@ package dad.javafx.main;
 
 import java.io.File;
 
+
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -30,7 +32,7 @@ public class AccesoFicheros extends Application {
 	private TextArea contentArea;
 	private ListView<File> fileList;
 	private Button createBt, removeBt, moveBt, viewBt, contentBt, modBt;
-	private CheckBox folderBt, fichBt;
+	private RadioButton folderCheck, ficheroCheck;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -59,8 +61,14 @@ public class AccesoFicheros extends Application {
 		contentBt = new Button("Ver contenido fichero");
 		modBt = new Button("Modificar fichero");
 		
-		folderBt = new CheckBox("Es carpeta");
-		fichBt = new CheckBox("Es fichero");
+		contentBt.setPrefWidth(140);
+		modBt.setPrefWidth(140);
+		viewBt.setPrefWidth(140);
+		
+		folderCheck = new RadioButton("Es carpeta");
+		ficheroCheck = new RadioButton("Es fichero");
+		ToggleGroup grp = new ToggleGroup();
+		grp.getToggles().addAll(folderCheck, ficheroCheck);
 		
 		// Ajuste del Grid Layout
 		GridPane grid = new GridPane();
@@ -70,10 +78,9 @@ public class AccesoFicheros extends Application {
 
 		// Filas y columnas
 		grid.addRow(0, rutaLbl, rutaTxt); // Ruta
-		GridPane.setHalignment(rutaLbl, HPos.CENTER);
 		
 		// Los botones en un Horizontal Box
-		HBox btBox = new HBox(80, createBt, removeBt, moveBt, folderBt, fichBt); // Botones principales de manejo de ficheros
+		HBox btBox = new HBox(80, createBt, removeBt, moveBt, folderCheck, ficheroCheck); // Botones principales de manejo de ficheros
 		btBox.setAlignment(Pos.BASELINE_CENTER);
 		
 		grid.addRow(1, btBox);
