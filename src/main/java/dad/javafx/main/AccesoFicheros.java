@@ -61,6 +61,7 @@ public class AccesoFicheros extends Application {
 		contentBt = new Button("Ver contenido fichero");
 		modBt = new Button("Modificar fichero");
 		
+		// Un truco para hacer que se expandan al máximo
 		contentBt.setMaxWidth(Double.MAX_VALUE);
 		modBt.setMaxWidth(Double.MAX_VALUE);
 		viewBt.setMaxWidth(Double.MAX_VALUE);
